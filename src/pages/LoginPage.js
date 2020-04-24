@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useDispatch} from 'react-redux'
 import {Row,Col,Form,Button} from 'react-bootstrap'
 import ActionLogin from '../redux/actions/ActionLogin'
 import {connect} from 'react-redux'
+import { useHistory } from 'react-router-dom';
 function LoginPage({usuario}) {
     const [form,setForm] = useState();
+    const history = useHistory()
     const dispatch = useDispatch()
     onchange = e => {
         setForm({
@@ -12,6 +14,11 @@ function LoginPage({usuario}) {
             [e.target.name] : e.target.value
         });
     }
+    useEffect(() => {
+        if(usuario.logado){
+            history.push('/dashboard')
+        }
+    },[usuario,history])
     const Logar = e => {
         e.preventDefault();
 
