@@ -1,11 +1,16 @@
 
 export function AuthLocalStorage(dispatch) {
     return (dispatch) => {
-        if(localStorage.getItem('auth'))
+        console.log("entrou aqui")
+        if(localStorage.getItem('token'))
         {
+            
             return dispatch({
                 type: "USER_AUTHENTICATED",
-                payload: localStorage.getItem('auth')
+                payload: {
+                    token : localStorage.getItem('auth'),
+                    email: localStorage.getItem('user')
+                }
             })
         }
        return  dispatch({

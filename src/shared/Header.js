@@ -16,7 +16,7 @@ function Header({usuario}) {
         <Nav className="justify-content-between">
           {
             usuario.logado? 
-            <NavDropdown title="PAINEL" id="basic-nav-dropdown">
+            <NavDropdown title={usuario.user.email} id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">MEUS DADOS</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">SAIR</NavDropdown.Item>
             </NavDropdown>

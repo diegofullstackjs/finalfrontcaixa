@@ -1,5 +1,4 @@
 import {api} from '../../services/index'
-
 export default function ActionLogin(data){
     return dispatch => {
          api.post('/user/login',data)
@@ -7,10 +6,14 @@ export default function ActionLogin(data){
 
             if(resultado.data.token)
             {
-                localStorage.setItem('auth',JSON.stringify(resultado.data))
+                localStorage.setItem('token',resultado.data.token)
+                localStorage.setItem('user',resultado.data.user.email)
                 return dispatch({
                     type : "USER_AUTHENTICATED",
-                    payload: resultado.data
+                    payload: {
+                        token : resultado.data.token,
+                        email: resultado.data.user.email
+                    }
                 })
             }
          }).catch((e) => {
